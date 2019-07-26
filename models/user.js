@@ -17,16 +17,4 @@ const User = mongoose.model("User", {
   }
 });
 
-// const andrew = new User({
-//   name: "Andrew",
-//   age: 27
-// });
-
-// andrew
-//   .save()
-//   .then(() => {
-//     console.log(andrew);
-//   })
-//   .catch(error => console.log(error));
-
 module.exports = User;

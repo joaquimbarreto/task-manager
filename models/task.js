@@ -13,14 +13,4 @@ const Task = mongoose.model("Task", {
   }
 });
 
-// const newTask = new Task({
-//   descripton: " Learn moongoose",
-//   completed: false
-// });
-
-// newTask
-//   .save()
-//   .then(() => console.log(newTask))
-//   .catch(error => console.log(error));
-
 module.exports = Task;
