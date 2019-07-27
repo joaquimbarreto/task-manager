@@ -18,6 +18,10 @@ A task management app in MERN (MongoDB, Express, React, Node).
 
 - MongoDB
 
+### Authentication
+
+- JWT
+
 ### Deployment
 
 - Heroku
