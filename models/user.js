@@ -21,14 +21,10 @@ const User = mongoose.model("User", {
   password: {
     type: String,
     required: true,
-    trim: true
-  },
-  age: {
-    type: Number,
-    default: 0,
+    trim: true,
     validate(value) {
-      if (value < 0) {
-        throw new Error("Age must be a positive number");
+      if (value < 6) {
+        throw new Error("Password must be at least 6 characters");
       }
     }
   }
