@@ -9,10 +9,19 @@ const header = {
 
 class usersAPI {
   static login(user) {
-    return axios
-      .post("http://localhost:3001/users/login", user)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+    // debugger;
+    // fetch("http://localhost:3001/users/login", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(user)
+    // }).then(res => res.json());
+    // debugger;
+    return axios({
+      method: "post",
+      baseURL: "http://localhost:3001/users/login",
+      headers: { "Content-Type": "application/json" },
+      params: user
+    });
   }
 
   static logout() {
@@ -23,10 +32,7 @@ class usersAPI {
   }
 
   static user() {
-    return axios
-      .get("http://localhost:3001/users/me", header)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+    return axios.get("http://localhost:3001/users/me", header);
   }
 
   static register(user) {

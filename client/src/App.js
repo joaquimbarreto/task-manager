@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import Tasks from "./components/Tasks";
+import React, { useState, useEffect } from "react";
+// import Tasks from "./components/Tasks";
 import Login from "./components/Login";
 import "./App.css";
+import usersAPI from "./usersAPI";
 
 const App = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
-  console.log(user);
+  useEffect(() => {
+    usersAPI.user().then(res => setUser(res.data));
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Task Manager</h1>
       </header>
-      {user ? <Tasks /> : <Login />}
+      <Login />
+      {/* {user ? <Tasks /> : <Login />} */}
     </div>
   );
 };
