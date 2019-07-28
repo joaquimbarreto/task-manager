@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import Tasks from "./components/Tasks";
+import Register from "./components/Register";
+import NotFound from "./components/NotFound";
 import Login from "./components/Login";
-import "./App.css";
+import Tasks from "./components/Tasks";
+import User from "./components/User";
 import usersAPI from "./usersAPI";
+import "./App.css";
+
+import { Route, Switch, withRouter } from "react-router-dom";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -16,10 +21,27 @@ const App = () => {
       <header className="App-header">
         <h1>Task Manager</h1>
       </header>
-      <Login user={user} />
-      {/* {user ? <Tasks /> : <Login />} */}
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route
+          exact
+          path="/register"
+          component={routerProps => <Register {...routerProps} />}
+        />
+        <Route
+          exact
+          path="/user"
+          component={routerProps => <User {...routerProps} />}
+        />
+        <Route
+          exact
+          path="/user/tasks"
+          component={routerProps => <Tasks {...routerProps} />}
+        />
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 };
 
-export default App;
+export default withRouter(App);

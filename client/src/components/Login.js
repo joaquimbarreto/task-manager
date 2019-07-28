@@ -2,28 +2,27 @@ import React, { useState } from "react";
 import usersAPI from "../usersAPI";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  });
 
-  const user = {
-    email,
-    password
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = () => {
-    usersAPI.login(user);
-  };
-
-  const handlePassword = event => {
-    setPassword(event.target.value);
-  };
-
-  const handleEmail = event => {
-    setEmail(event.target.value);
+    usersAPI
+      .login(user)
+      .then(data => localStorage.setItem("token", data.token));
   };
 
   return (
     <div className="login">
+      <h2>Register</h2>
+      <button>Register</button>
+      <p>or</p>
       <h2>Login</h2>
       <form action="" method="get" className="form-login">
         <div className="form-login">
@@ -32,7 +31,7 @@ const Login = () => {
             type="text"
             name="email"
             id="email"
-            onChange={handleEmail}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -42,7 +41,7 @@ const Login = () => {
             type="password"
             name="password"
             id="password"
-            onChange={handlePassword}
+            onChange={handleInputChange}
             required
           />
         </div>
