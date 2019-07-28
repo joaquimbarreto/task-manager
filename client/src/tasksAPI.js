@@ -8,6 +8,13 @@ class tasksAPI {
       .catch(error => console.log(error));
   }
 
+  static task(id) {
+    return axios
+      .get("http://localhost:3001/tasks/" + id)
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
+  }
+
   static create(task) {
     return axios
       .post("http://localhost:3001/tasks", task)
@@ -17,14 +24,14 @@ class tasksAPI {
 
   static delete(task) {
     return axios
-      .get("http://localhost:3001/tasks", task)
+      .delete("http://localhost:3001/tasks/" + task.id)
       .then(res => console.log(res))
       .catch(error => console.log(error));
   }
 
   static update(task) {
     return axios
-      .get("http://localhost:3001/tasks", task)
+      .patch("http://localhost:3001/tasks/" + task.id, task)
       .then(res => console.log(res))
       .catch(error => console.log(error));
   }

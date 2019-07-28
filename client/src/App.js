@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Tasks from "./components/Tasks";
+import Login from "./components/Login";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState({});
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Task Manager</h1>
       </header>
+      {user ? <Tasks /> : <Login />}
     </div>
   );
-}
+};
 
 export default App;
