@@ -16,7 +16,7 @@ const App = () => {
       <header className="App-header">
         <h1>Task Manager</h1>
       </header>
-      <Login />
+      <Login user={user} />
       {/* {user ? <Tasks /> : <Login />} */}
     </div>
   );

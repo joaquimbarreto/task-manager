@@ -1,9 +1,10 @@
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
 const header = {
   headers: {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDNkNWIzNDk2ODQ5ZTIzYmMwZGIxMGMiLCJpYXQiOjE1NjQzMTQ2MjV9.j1dCYTXsUQiXNx3ReyvNuVe55e3NpitzSftBEKn4KK8"
+    Authorization: "Bearer " + token
   }
 };
 
