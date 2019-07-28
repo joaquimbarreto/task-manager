@@ -5,6 +5,9 @@ import "./App.css";
 
 const App = () => {
   const [user, setUser] = useState({});
+
+  console.log(user);
+
   return (
     <div className="App">
       <header className="App-header">

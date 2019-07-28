@@ -5,7 +5,7 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    tasksAPI.tasks().then(data => setTasks(data));
+    tasksAPI.tasks().then(res => setTasks(res.data));
   }, []);
 
   return (
