@@ -13,7 +13,7 @@ const Tasks = () => {
       <h2>Tasks</h2>
       <ul>
         {tasks.map(task => {
-          return <li key={task.id}>{task.description}</li>;
+          return <li key={task._id}>{task.description}</li>;
         })}
       </ul>
     </div>

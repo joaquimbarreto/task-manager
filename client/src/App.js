@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import "./App.css";
 
 const App = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
 
   console.log(user);
 
