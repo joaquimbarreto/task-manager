@@ -17,18 +17,34 @@ class tasksAPI {
       .catch(error => console.log(error));
   }
 
-  static create(task) {
-    return axios
-      .post("http://localhost:3001/tasks", task)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+  static create(task, token) {
+    return axios({
+      method: "post",
+      baseURL: "http://localhost:3001/tasks",
+      headers: { Authorization: token },
+      data: {
+        description: task
+      }
+    });
   }
 
-  static delete(task) {
-    return axios
-      .delete("http://localhost:3001/tasks/" + task.id)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+  static delete(id, token) {
+    return axios({
+      method: "delete",
+      baseURL: "http://localhost:3001/tasks/" + id,
+      data: null,
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json"
+      }
+    });
+    // const header = {
+    //   headers: {
+    //     Authorization: "Bearer " + token
+    //   }
+    // };
+    // debugger;
+    // return axios.delete("http://localhost:3001/tasks/" + id, header);
   }
 
   static update(task) {

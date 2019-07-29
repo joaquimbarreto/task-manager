@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -58,4 +61,8 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main-content {
+  flex-grow: 1;
 }

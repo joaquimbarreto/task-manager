@@ -29,33 +29,42 @@ const App = props => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Task Manager</h1>
-      </header>
-      <Nav user={user} logout={logout} />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          component={routerProps => <Login {...routerProps} login={login} />}
-        />
-        <Route
-          exact
-          path="/register"
-          component={routerProps => <Register {...routerProps} />}
-        />
-        <Route
-          exact
-          path="/user"
-          component={routerProps => <User {...routerProps} user={user} />}
-        />
-        <Route
-          exact
-          path="/user/tasks"
-          component={routerProps => <Tasks {...routerProps} />}
-        />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="main-content">
+        <header className="App-header">
+          <h1>Task Manager</h1>
+        </header>
+        <Nav user={user} logout={logout} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={routerProps => <Login {...routerProps} login={login} />}
+          />
+          <Route
+            exact
+            path="/register"
+            component={routerProps => <Register {...routerProps} />}
+          />
+          <Route
+            exact
+            path="/user"
+            component={routerProps => <User {...routerProps} user={user} />}
+          />
+          <Route
+            exact
+            path="/user/tasks"
+            component={routerProps => <Tasks {...routerProps} />}
+          />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+      <footer>
+        <div>
+          <p>
+            This app is done with MongoDB, Express, React and Node.js (MERN)
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
