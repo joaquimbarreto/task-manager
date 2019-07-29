@@ -11,7 +11,8 @@ import { Route, Switch, withRouter } from "react-router-dom";
 const App = () => {
   const [user, setUser] = useState(null);
 
-  const login = user => {
+  const login = (user, token) => {
+    console.log(user);
     setUser(user);
   };
 

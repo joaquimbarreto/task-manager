@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 const header = {
   headers: {
-    Authorization: "Bearer " + token
+    Authorization: "Bearer " + localStorage.getItem("token")
   }
 };
 
@@ -18,11 +16,14 @@ class usersAPI {
     });
   }
 
-  static logout() {
-    return axios
-      .post("http://localhost:3001/logout")
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+  static logout(token) {
+    const header2 = {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    };
+    // debugger;
+    return axios.post("http://localhost:3001/users/logout", null, header2);
   }
 
   static user() {

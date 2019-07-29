@@ -12,14 +12,24 @@ const Login = props => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = () => {
-    usersAPI
-      .login(user)
-      .then(data => {
-        props.login(data.user);
-        localStorage.setItem("token", data.token);
-      })
-      .catch(error => console.log(error));
+  const handleSubmit = event => {
+    event.preventDefault();
+    usersAPI.login(user).then(res => {
+      if (res.error) {
+        alert(res.error);
+      } else {
+        props.login(res.data.user);
+        localStorage.removeItem("token");
+        localStorage.setItem("token", res.data.token);
+      }
+    });
+  };
+
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+    usersAPI.logout(token);
+    console.log("Logged Out");
+    localStorage.removeItem("token");
   };
 
   return (
@@ -58,6 +68,7 @@ const Login = props => {
           />
         </div>
       </form>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
