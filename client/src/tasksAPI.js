@@ -29,22 +29,13 @@ class tasksAPI {
   }
 
   static delete(id, token) {
-    return axios({
-      method: "delete",
-      baseURL: "http://localhost:3001/tasks/" + id,
-      data: null,
+    const header = {
       headers: {
-        Authorization: token,
-        "Content-Type": "application/json"
+        Authorization: "Bearer " + token
       }
-    });
-    // const header = {
-    //   headers: {
-    //     Authorization: "Bearer " + token
-    //   }
-    // };
-    // debugger;
-    // return axios.delete("http://localhost:3001/tasks/" + id, header);
+    };
+    debugger;
+    return axios.delete("http://localhost:3001/tasks/" + id, header);
   }
 
   static update(task) {

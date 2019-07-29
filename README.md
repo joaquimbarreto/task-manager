@@ -34,7 +34,7 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Register new user
 - Read all tasks (ok)
 - Create task (ok)
-- Delete task
+- Delete task (ok)
 - Update task
 - Heroku deploy
 
