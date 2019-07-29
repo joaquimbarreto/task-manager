@@ -26,3 +26,21 @@ A task management app in MERN (MongoDB, Express, React, Node).
 
 - Heroku
 - mLab addon
+
+## MVP
+
+- Login (ok)
+- Logout (ok)
+- Register new user
+- Read all tasks (ok)
+- Create task (ok)
+- Delete task
+- Update task
+- Heroku deploy
+
+### Stretch Goals
+
+- Read user details
+- Update user details
+- Delete user account
+- Get details of task
