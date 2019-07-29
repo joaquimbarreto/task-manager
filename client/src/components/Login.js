@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import usersAPI from "../usersAPI";
 
-const Login = () => {
+const Login = props => {
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -15,7 +15,11 @@ const Login = () => {
   const handleSubmit = () => {
     usersAPI
       .login(user)
-      .then(data => localStorage.setItem("token", data.token));
+      .then(data => {
+        props.login(data.user);
+        localStorage.setItem("token", data.token);
+      })
+      .catch(error => console.log(error));
   };
 
   return (

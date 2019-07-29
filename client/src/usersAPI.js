@@ -10,19 +10,12 @@ const header = {
 
 class usersAPI {
   static login(user) {
-    // debugger;
-    // fetch("http://localhost:3001/users/login", {
-    //   method: "post",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(user)
-    // }).then(res => res.json());
-    // debugger;
-    // return axios({
-    //   method: "post",
-    //   baseURL: "http://localhost:3001/users/login",
-    //   headers: { "Content-Type": "application/json" },
-    //   params: user
-    // });
+    return axios({
+      method: "post",
+      baseURL: "http://localhost:3001/users/login",
+      headers: { "Content-Type": "application/json" },
+      data: user
+    });
   }
 
   static logout() {

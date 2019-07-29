@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Tasks from "./components/Tasks";
 import User from "./components/User";
-import usersAPI from "./usersAPI";
 import "./App.css";
 
 import { Route, Switch, withRouter } from "react-router-dom";
@@ -12,9 +11,9 @@ import { Route, Switch, withRouter } from "react-router-dom";
 const App = () => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    usersAPI.user().then(res => setUser(res.data));
-  }, []);
+  const login = user => {
+    setUser(user);
+  };
 
   return (
     <div className="App">
@@ -22,7 +21,11 @@ const App = () => {
         <h1>Task Manager</h1>
       </header>
       <Switch>
-        <Route exact path="/" component={Login} />
+        <Route
+          exact
+          path="/"
+          component={routerProps => <Login {...routerProps} login={login} />}
+        />
         <Route
           exact
           path="/register"
@@ -31,7 +34,7 @@ const App = () => {
         <Route
           exact
           path="/user"
-          component={routerProps => <User {...routerProps} />}
+          component={routerProps => <User {...routerProps} user={user} />}
         />
         <Route
           exact

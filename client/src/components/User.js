@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import usersAPI from "../usersAPI";
+import React from "react";
 
-const User = () => {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    usersAPI.user().then(res => setUser(res.data));
-  }, []);
+const User = props => {
   return (
     <div>
       <h2>Account details</h2>
-      <p>{user.name}</p>
+      <p>{props.user.name}</p>
+      <button>Update</button>
     </div>
   );
 };
