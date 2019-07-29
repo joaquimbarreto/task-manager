@@ -4,16 +4,27 @@ import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Tasks from "./components/Tasks";
 import User from "./components/User";
+import Nav from "./components/Nav";
+import usersAPI from "./usersAPI";
 import "./App.css";
 
 import { Route, Switch, withRouter } from "react-router-dom";
 
-const App = () => {
+const App = props => {
   const [user, setUser] = useState(null);
 
-  const login = (user, token) => {
+  const login = user => {
     console.log(user);
     setUser(user);
+  };
+
+  const logout = () => {
+    const token = localStorage.getItem("token");
+    usersAPI.logout(token);
+    console.log("Logged Out");
+    localStorage.removeItem("token");
+    setUser(null);
+    props.history.push("/");
   };
 
   return (
@@ -21,6 +32,7 @@ const App = () => {
       <header className="App-header">
         <h1>Task Manager</h1>
       </header>
+      <Nav user={user} logout={logout} />
       <Switch>
         <Route
           exact

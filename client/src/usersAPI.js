@@ -22,7 +22,6 @@ class usersAPI {
         Authorization: "Bearer " + token
       }
     };
-    // debugger;
     return axios.post("http://localhost:3001/users/logout", null, header2);
   }
 

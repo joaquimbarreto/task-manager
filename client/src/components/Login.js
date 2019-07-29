@@ -2,41 +2,32 @@ import React, { useState } from "react";
 import usersAPI from "../usersAPI";
 
 const Login = props => {
-  const [user, setUser] = useState({
+  const [userInput, setUserInput] = useState({
     email: "",
     password: ""
   });
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    setUserInput({ ...userInput, [name]: value });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    usersAPI.login(user).then(res => {
+    usersAPI.login(userInput).then(res => {
       if (res.error) {
         alert(res.error);
       } else {
         props.login(res.data.user);
         localStorage.removeItem("token");
         localStorage.setItem("token", res.data.token);
+        props.history.push("/user/tasks");
       }
     });
   };
 
-  const handleLogout = () => {
-    const token = localStorage.getItem("token");
-    usersAPI.logout(token);
-    console.log("Logged Out");
-    localStorage.removeItem("token");
-  };
-
   return (
     <div className="login">
-      <h2>Register</h2>
-      <button>Register</button>
-      <p>or</p>
       <h2>Login</h2>
       <form action="" method="get" className="form-login">
         <div className="form-login">
@@ -68,7 +59,6 @@ const Login = props => {
           />
         </div>
       </form>
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

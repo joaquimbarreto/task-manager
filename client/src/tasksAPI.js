@@ -1,15 +1,12 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
-const header = {
-  headers: {
-    Authorization: "Bearer " + token
-  }
-};
-
 class tasksAPI {
-  static tasks() {
+  static tasks(token) {
+    const header = {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    };
     return axios.get("http://localhost:3001/tasks", header);
   }
 

@@ -5,7 +5,8 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    tasksAPI.tasks().then(res => setTasks(res.data));
+    const token = localStorage.getItem("token");
+    tasksAPI.tasks(token).then(res => setTasks(res.data));
   }, []);
 
   return (
