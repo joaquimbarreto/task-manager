@@ -6,12 +6,13 @@ import usersAPI from "../usersAPI";
 const Tasks = props => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [newTaskCreated, setNewTaskCreated] = useState(null);
   const [user, setUser] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // console.log(token);
-    // tasksAPI.tasks(token).then(res => setTasks(res.data));
+    console.log(token);
+    tasksAPI.tasks(token).then(res => setTasks(res.data));
     usersAPI.validate(token).then(res => {
       if (res.error) {
         console.log(res.error);
@@ -22,17 +23,22 @@ const Tasks = props => {
     });
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    tasksAPI.tasks(token).then(res => setTasks(res.data));
-    console.log("calling api");
-  });
-
   const deleteTask = id => {
     const token = localStorage.getItem("token");
     tasksAPI.delete(id, token);
+    const newTasksSet = tasks.filter(task => task._id !== id);
+    console.log(newTasksSet);
+    setTasks(newTasksSet);
   };
+
+  useEffect(() => {
+    if (newTaskCreated) {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      tasksAPI.tasks(token).then(res => setTasks(res.data));
+      setNewTaskCreated(false);
+    }
+  }, [newTaskCreated]);
 
   const handleNewTaskInput = event => {
     setNewTask(event.target.value);
@@ -42,6 +48,8 @@ const Tasks = props => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     tasksAPI.create(newTask, token);
+    setNewTaskCreated(true);
+    document.getElementById("new-task").value = "";
   };
 
   return (
