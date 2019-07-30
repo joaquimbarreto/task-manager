@@ -29,12 +29,12 @@ A task management app in MERN (MongoDB, Express, React, Node).
 
 ## MVP
 
-- Login (ok)
-- Logout (ok)
+- Login
+- Logout
 - Register new user
-- Read all tasks (ok)
-- Create task (ok)
-- Delete task (ok)
+- Read all tasks
+- Create task
+- Delete task
 - Heroku deploy
 
 ### Stretch Goals

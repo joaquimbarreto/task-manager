@@ -34,7 +34,6 @@ class tasksAPI {
         Authorization: "Bearer " + token
       }
     };
-    debugger;
     return axios.delete("http://localhost:3001/tasks/" + id, header);
   }
 

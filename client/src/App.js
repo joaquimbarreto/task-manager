@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
@@ -10,19 +10,11 @@ import "./App.css";
 import { Route, Switch, withRouter } from "react-router-dom";
 
 const App = props => {
-  const [user, setUser] = useState(null);
-
-  const login = user => {
-    console.log(user);
-    setUser(user);
-  };
-
   const logout = () => {
     const token = localStorage.getItem("token");
     usersAPI.logout(token);
-    console.log("Logged Out");
     localStorage.removeItem("token");
-    setUser(null);
+    console.log("Logged Out");
     props.history.push("/");
   };
 
@@ -30,11 +22,14 @@ const App = props => {
     const token = localStorage.getItem("token");
     usersAPI.validate(token).then(res => {
       if (res.error) {
+        console.log(res.error);
+        props.history.push("/");
       } else {
-        setUser(res.user);
+        console.log(res.data);
+        props.history.push("/user/tasks");
       }
     });
-  }, []);
+  }, [props.history]);
 
   return (
     <div className="App">
@@ -46,27 +41,23 @@ const App = props => {
           <Route
             exact
             path="/"
-            component={routerProps => <Login {...routerProps} login={login} />}
+            component={routerProps => <Login {...routerProps} />}
           />
           <Route
             exact
             path="/register"
-            component={routerProps => (
-              <Register {...routerProps} login={login} />
-            )}
+            component={routerProps => <Register {...routerProps} />}
           />
           <Route
             exact
             path="/user"
-            component={routerProps => (
-              <User {...routerProps} user={user} logout={logout} />
-            )}
+            component={routerProps => <User {...routerProps} logout={logout} />}
           />
           <Route
             exact
             path="/user/tasks"
             component={routerProps => (
-              <Tasks {...routerProps} user={user} logout={logout} />
+              <Tasks {...routerProps} logout={logout} />
             )}
           />
           <Route component={NotFound} />

@@ -25,7 +25,7 @@ class usersAPI {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get("http://localhost:3001/users/me", null, header);
+    return axios.get("http://localhost:3001/users/me", header);
   }
 
   static register(user) {

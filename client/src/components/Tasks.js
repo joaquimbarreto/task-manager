@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import tasksAPI from "../tasksAPI";
+import usersAPI from "../usersAPI";
 
 const Tasks = props => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    tasksAPI.tasks(token).then(res => setTasks(res.data));
+    // console.log(token);
+    // tasksAPI.tasks(token).then(res => setTasks(res.data));
+    usersAPI.validate(token).then(res => {
+      if (res.error) {
+        console.log(res.error);
+      } else {
+        setUser(res.data);
+        console.log(res.data);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    tasksAPI.tasks(token).then(res => setTasks(res.data));
+    console.log("calling api");
+  });
 
   const deleteTask = id => {
     const token = localStorage.getItem("token");
@@ -31,7 +49,7 @@ const Tasks = props => {
       <div className="tasks-header">
         <h3>User:</h3>
         <Link to={"/user"}>
-          <h2>{props.user.name}</h2>
+          <h2>{user.name}</h2>
         </Link>
         <button onClick={props.logout}>Logout</button>
       </div>

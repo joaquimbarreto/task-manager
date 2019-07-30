@@ -20,7 +20,6 @@ const Register = props => {
       if (res.error) {
         alert(res.error);
       } else {
-        props.login(res.data.user);
         localStorage.removeItem("token");
         localStorage.setItem("token", res.data.token);
         props.history.push("/user/tasks");
