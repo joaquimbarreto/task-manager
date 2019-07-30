@@ -35,7 +35,6 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Read all tasks (ok)
 - Create task (ok)
 - Delete task (ok)
-- Update task
 - Heroku deploy
 
 ### Stretch Goals
@@ -44,3 +43,4 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Update user details
 - Delete user account
 - Get details of task
+- Update task

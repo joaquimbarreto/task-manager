@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import tasksAPI from "../tasksAPI";
 
-const Tasks = () => {
+const Tasks = props => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
@@ -26,7 +27,14 @@ const Tasks = () => {
   };
 
   return (
-    <div>
+    <div className="tasks">
+      <div className="tasks-header">
+        <h3>User:</h3>
+        <Link to={"/user"}>
+          <h2>{props.user.name}</h2>
+        </Link>
+        <button onClick={props.logout}>Logout</button>
+      </div>
       <h2>Tasks</h2>
       <ul>
         {tasks.map(task => {
@@ -38,7 +46,7 @@ const Tasks = () => {
           );
         })}
       </ul>
-      <div>
+      <div className="tasks-form">
         <form>
           <div className="form-new-task">
             <label>Create new task:</label>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 const Nav = props => {
@@ -12,7 +13,9 @@ const Nav = props => {
       ) : (
         <div>
           <h2>Please register here</h2>
-          <button>Register</button>
+          <Link to={"/register"}>
+            <button>Register</button>
+          </Link>
         </div>
       )}
     </div>

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Tasks from "./components/Tasks";
 import User from "./components/User";
-import Nav from "./components/Nav";
 import usersAPI from "./usersAPI";
 import "./App.css";
 
@@ -27,13 +26,22 @@ const App = props => {
     props.history.push("/");
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    usersAPI.validate(token).then(res => {
+      if (res.error) {
+      } else {
+        setUser(res.user);
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <div className="main-content">
         <header className="App-header">
           <h1>Task Manager</h1>
         </header>
-        <Nav user={user} logout={logout} />
         <Switch>
           <Route
             exact
@@ -43,17 +51,23 @@ const App = props => {
           <Route
             exact
             path="/register"
-            component={routerProps => <Register {...routerProps} />}
+            component={routerProps => (
+              <Register {...routerProps} login={login} />
+            )}
           />
           <Route
             exact
             path="/user"
-            component={routerProps => <User {...routerProps} user={user} />}
+            component={routerProps => (
+              <User {...routerProps} user={user} logout={logout} />
+            )}
           />
           <Route
             exact
             path="/user/tasks"
-            component={routerProps => <Tasks {...routerProps} />}
+            component={routerProps => (
+              <Tasks {...routerProps} user={user} logout={logout} />
+            )}
           />
           <Route component={NotFound} />
         </Switch>

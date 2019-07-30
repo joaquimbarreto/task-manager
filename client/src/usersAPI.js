@@ -1,11 +1,5 @@
 import axios from "axios";
 
-const header = {
-  headers: {
-    Authorization: "Bearer " + localStorage.getItem("token")
-  }
-};
-
 class usersAPI {
   static login(user) {
     return axios({
@@ -17,23 +11,30 @@ class usersAPI {
   }
 
   static logout(token) {
-    const header2 = {
+    const header = {
       headers: {
         Authorization: "Bearer " + token
       }
     };
-    return axios.post("http://localhost:3001/users/logout", null, header2);
+    return axios.post("http://localhost:3001/users/logout", null, header);
   }
 
-  static user() {
-    return axios.get("http://localhost:3001/users/me", header);
+  static validate(token) {
+    const header = {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    };
+    return axios.get("http://localhost:3001/users/me", null, header);
   }
 
   static register(user) {
-    return axios
-      .post("http://localhost:3001/users/", user)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+    return axios({
+      method: "post",
+      baseURL: "http://localhost:3001/users",
+      headers: { "Content-Type": "application/json" },
+      data: user
+    });
   }
 
   static update(user) {

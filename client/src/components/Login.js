@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import usersAPI from "../usersAPI";
 
 const Login = props => {
@@ -28,6 +29,13 @@ const Login = props => {
 
   return (
     <div className="login">
+      <div>
+        <h2>Please register here</h2>
+        <Link to={"/register"}>
+          <button>Register</button>
+        </Link>
+        <p> or login below</p>
+      </div>
       <h2>Login</h2>
       <form action="" method="get" className="form-login">
         <div className="form-login">
