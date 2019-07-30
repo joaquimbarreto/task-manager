@@ -7,16 +7,14 @@ const User = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
     usersAPI.validate(token).then(res => {
       if (res.error) {
-        console.log(res.error);
       } else {
         setUser(res.data);
-        console.log(res.data);
       }
     });
   }, []);
+
   return (
     <div>
       <h2>Account details</h2>

@@ -14,7 +14,6 @@ const App = props => {
     const token = localStorage.getItem("token");
     usersAPI.logout(token);
     localStorage.removeItem("token");
-    console.log("Logged Out");
     props.history.push("/");
   };
 
@@ -22,10 +21,8 @@ const App = props => {
     const token = localStorage.getItem("token");
     usersAPI.validate(token).then(res => {
       if (res.error) {
-        console.log(res.error);
         props.history.push("/");
       } else {
-        console.log(res.data);
         props.history.push("/user/tasks");
       }
     });

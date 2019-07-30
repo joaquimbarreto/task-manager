@@ -11,34 +11,29 @@ const Tasks = props => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
     tasksAPI.tasks(token).then(res => setTasks(res.data));
     usersAPI.validate(token).then(res => {
       if (res.error) {
-        console.log(res.error);
       } else {
         setUser(res.data);
-        console.log(res.data);
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (newTaskCreated) {
+      const token = localStorage.getItem("token");
+      tasksAPI.tasks(token).then(res => setTasks(res.data));
+      setNewTaskCreated(false);
+    }
+  }, [newTaskCreated]);
 
   const deleteTask = id => {
     const token = localStorage.getItem("token");
     tasksAPI.delete(id, token);
     const newTasksSet = tasks.filter(task => task._id !== id);
-    console.log(newTasksSet);
     setTasks(newTasksSet);
   };
-
-  useEffect(() => {
-    if (newTaskCreated) {
-      const token = localStorage.getItem("token");
-      console.log(token);
-      tasksAPI.tasks(token).then(res => setTasks(res.data));
-      setNewTaskCreated(false);
-    }
-  }, [newTaskCreated]);
 
   const handleNewTaskInput = event => {
     setNewTask(event.target.value);
