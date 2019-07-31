@@ -84,6 +84,8 @@ const Tasks = props => {
             <input
               type="text"
               name="new-task"
+              size="50"
+              maxLength="60"
               id="new-task"
               placeholder="Type new task here"
               onChange={handleNewTaskInput}

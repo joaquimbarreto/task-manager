@@ -180,11 +180,13 @@ ul {
 }
 
 .tasks-list {
-  width: 50vw;
+  width: 620px;
 }
 
 li {
+  display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 form.form-new-task {
@@ -197,4 +199,13 @@ form.form-new-task {
 
 div.form-new-task {
   display: table-row;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button#task-entry-delete {
+  padding: 10px;
 }
