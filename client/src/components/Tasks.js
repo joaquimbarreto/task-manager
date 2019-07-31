@@ -23,9 +23,7 @@ const Tasks = props => {
   useEffect(() => {
     if (tasksUpdated) {
       const token = localStorage.getItem("token");
-      setTimeout(() => {
-        tasksAPI.tasks(token).then(res => setTasks(res.data));
-      }, 1000);
+      tasksAPI.tasks(token).then(res => setTasks(res.data));
       setTasksUpdated(false);
     }
   }, [tasksUpdated]);
@@ -40,13 +38,17 @@ const Tasks = props => {
   const handleTaskCompletedTrue = id => {
     const token = localStorage.getItem("token");
     tasksAPI.completedTrue(id, token);
-    setTasksUpdated(true);
+    setTimeout(() => {
+      setTasksUpdated(true);
+    }, 1000);
   };
 
   const handleTaskCompletedFalse = id => {
     const token = localStorage.getItem("token");
     tasksAPI.completedFalse(id, token);
-    setTasksUpdated(true);
+    setTimeout(() => {
+      setTasksUpdated(true);
+    }, 1000);
   };
 
   const handleNewTaskInput = event => {

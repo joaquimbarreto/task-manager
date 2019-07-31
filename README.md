@@ -36,15 +36,14 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Read all tasks
 - Create task
 - Delete task
+- Toggle complete
 - Heroku deploy
+- CSS
 
 ### Stretch Goals
 
 (In order of priority)
 
-- CSS
 - Jest Testing
 - Update user details
 - Delete user account
-- Get details of task
-- Update task
