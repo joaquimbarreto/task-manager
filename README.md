@@ -32,6 +32,7 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Login
 - Logout
 - Register new user
+- Read user details
 - Read all tasks
 - Create task
 - Delete task
@@ -39,7 +40,9 @@ A task management app in MERN (MongoDB, Express, React, Node).
 
 ### Stretch Goals
 
-- Read user details
+(In order of priority)
+
+- Jest Testing
 - Update user details
 - Delete user account
 - Get details of task

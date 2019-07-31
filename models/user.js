@@ -4,45 +4,48 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Task = require("./task");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-    lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) {
-        throw new Error("Email is invalid.");
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Email is invalid.");
+        }
       }
-    }
-  },
-  password: {
-    type: String,
-    required: true,
-    trim: true,
-    validate(value) {
-      if (value < 6) {
-        throw new Error("Password must be at least 6 characters");
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      validate(value) {
+        if (value < 6) {
+          throw new Error("Password must be at least 6 characters");
+        }
       }
-    }
-  },
-  tokens: [
-    {
-      token: {
-        type: String,
-        required: true
+    },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true
+        }
       }
-    }
-  ],
-}, {
-  timestamps: true
-});
+    ]
+  },
+  {
+    timestamps: true
+  }
+);
 
 userSchema.virtual("tasks", {
   ref: "Task",
@@ -62,7 +65,7 @@ userSchema.methods.toJSON = function() {
 
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, "sshhhh");
+  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
 
   user.tokens = user.tokens.concat({ token });
   await user.save();
