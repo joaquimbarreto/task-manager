@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(
   csp({
     policies: {
-      "default-src": [csp.SELF],
+      "default-src": [csp.NONE],
       "img-src": [csp.SELF]
     }
   })
