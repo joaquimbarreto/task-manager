@@ -238,11 +238,48 @@ button#task-entry-delete {
 }
 
 .tasks-heading h2 {
-  margin-top: 50px;
+  margin-top: 45px;
   margin-bottom: 1px;
 }
 
 .tasks-header {
+  margin-top: 30px;
+  height: auto;
+  width: 400px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-link {
+  text-decoration: none;
+}
+
+.user-link:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.user-link:hover {
+  color: rgb(83, 145, 196);
+}
+
+button#tasks-logout {
+  padding: 16px;
+  font-size: 16px;
+  width: 100px;
+  border: 1px solid #5391c4;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: black;
+  outline: none;
+  cursor: pointer;
+}
+
+button#tasks-logout:hover {
+  background-color: aliceblue;
 }

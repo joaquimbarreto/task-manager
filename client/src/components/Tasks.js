@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import tasksAPI from "../tasksAPI";
 import usersAPI from "../usersAPI";
 
@@ -62,9 +62,9 @@ const Tasks = props => {
   return (
     <div className="tasks">
       <div className="tasks-header">
-        <Link to={"/user"}>
+        <NavLink to={"/user"} className="user-link">
           <h2>{user.name}</h2>
-        </Link>
+        </NavLink>
         <button id="tasks-logout" onClick={props.logout}>
           Logout
         </button>
@@ -73,7 +73,7 @@ const Tasks = props => {
         <h2>Tasks</h2>
       </div>
       <div className="tasks-instructions">
-        <p>Double click to toggle completed.</p>
+        <p>(Double click on task to toggle completed.)</p>
       </div>
       <div className="tasks-form">
         <form>
