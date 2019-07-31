@@ -23,7 +23,9 @@ const Tasks = props => {
   useEffect(() => {
     if (tasksUpdated) {
       const token = localStorage.getItem("token");
-      tasksAPI.tasks(token).then(res => setTasks(res.data));
+      setTimeout(() => {
+        tasksAPI.tasks(token).then(res => setTasks(res.data));
+      }, 0);
       setTasksUpdated(false);
     }
   }, [tasksUpdated]);
