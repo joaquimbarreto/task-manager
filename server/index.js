@@ -1,6 +1,7 @@
 const express = require("express");
 const usersRouter = require("../routers/users");
 const tasksRouter = require("../routers/tasks");
+const csp = require("express-csp-header");
 const path = require("path");
 require("../db/mongoose");
 
@@ -18,5 +19,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
+
+app.use(
+  csp({
+    policies: {
+      "default-src": [csp.SELF],
+      "img-src": [csp.SELF]
+    }
+  })
+);
 
 app.listen(port, () => console.log("Listening on port " + port));
