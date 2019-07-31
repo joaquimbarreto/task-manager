@@ -65,7 +65,12 @@ const Tasks = props => {
                 <li key={task._id}>
                   <div className="task-description">{task.description}</div>
                   <div className="task-buttons">
-                    <button onClick={() => deleteTask(task._id)}>Delete</button>
+                    <button
+                      id="task-entry-delete"
+                      onClick={() => deleteTask(task._id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </li>
               </div>
@@ -76,15 +81,15 @@ const Tasks = props => {
       <div className="tasks-form">
         <form>
           <div className="form-new-task">
-            <label>Create new task:</label>
+            <input
+              type="text"
+              name="new-task"
+              id="new-task"
+              placeholder="Type new task here"
+              onChange={handleNewTaskInput}
+              required
+            />
           </div>
-          <input
-            type="text"
-            name="new-task"
-            id="new-task"
-            onChange={handleNewTaskInput}
-            required
-          />
           <div className="form-new-task">
             <input
               type="submit"
