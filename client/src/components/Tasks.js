@@ -25,7 +25,7 @@ const Tasks = props => {
       const token = localStorage.getItem("token");
       setTimeout(() => {
         tasksAPI.tasks(token).then(res => setTasks(res.data));
-      }, 10);
+      }, 1000);
       setTasksUpdated(false);
     }
   }, [tasksUpdated]);
