@@ -40,7 +40,7 @@ const Tasks = props => {
     tasksAPI.completedTrue(id, token);
     setTimeout(() => {
       setTasksUpdated(true);
-    }, 1000);
+    }, 0);
   };
 
   const handleTaskCompletedFalse = id => {
@@ -48,7 +48,7 @@ const Tasks = props => {
     tasksAPI.completedFalse(id, token);
     setTimeout(() => {
       setTasksUpdated(true);
-    }, 1000);
+    }, 0);
   };
 
   const handleNewTaskInput = event => {
