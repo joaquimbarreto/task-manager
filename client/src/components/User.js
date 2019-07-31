@@ -16,12 +16,22 @@ const User = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Account details</h2>
-      <p>{user.name}</p>
-      <p>{user.email}</p>
+    <div className="user-details">
+      <div className="user-details-header">
+        <h2>Account details</h2>
+      </div>
+      <div className="user-details-main">
+        <div className="current-user-details">
+          <p>
+            Name: <strong>{user.name}</strong>
+          </p>
+          <p>
+            Email: <strong>{user.email}</strong>
+          </p>
+        </div>
+      </div>
       <Link to={"/user/tasks"}>
-        <button id="user-back-to-tasks">Back to tasks</button>
+        <button id="user-back-to-tasks">Back To Tasks</button>
       </Link>
       {/* <button>Update</button> */}
     </div>
