@@ -60,6 +60,7 @@ const Register = props => {
             onChange={handleInputChange}
             required
           />
+          <p>(Minimum 6 characters)</p>
         </div>
         <div className="form-register">
           <input

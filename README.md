@@ -42,6 +42,7 @@ A task management app in MERN (MongoDB, Express, React, Node).
 
 (In order of priority)
 
+- CSS
 - Jest Testing
 - Update user details
 - Delete user account

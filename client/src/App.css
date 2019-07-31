@@ -66,3 +66,10 @@ label {
 .main-content {
   flex-grow: 1;
 }
+
+.form-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
