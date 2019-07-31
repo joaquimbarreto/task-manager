@@ -57,16 +57,22 @@ const Tasks = props => {
         <button onClick={props.logout}>Logout</button>
       </div>
       <h2>Tasks</h2>
-      <ul>
-        {tasks.map(task => {
-          return (
-            <li key={task._id}>
-              {task.description}
-              <button onClick={() => deleteTask(task._id)}>Delete</button>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="tasks-list">
+        <ul>
+          {tasks.map(task => {
+            return (
+              <div className="task-entry">
+                <li key={task._id}>
+                  <div className="task-description">{task.description}</div>
+                  <div className="task-buttons">
+                    <button onClick={() => deleteTask(task._id)}>Delete</button>
+                  </div>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
       <div className="tasks-form">
         <form>
           <div className="form-new-task">
@@ -82,6 +88,7 @@ const Tasks = props => {
           <div className="form-new-task">
             <input
               type="submit"
+              id="submit-new-task"
               onClick={handleNewTaskSubmit}
               value="Create New Task"
             />
