@@ -12,7 +12,7 @@
 }
 
 .App-header {
-  background-color: #2a7ec2d0;
+  background-color: #255e8dd0;
   min-height: 20vh;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,62 @@
   }
 }
 
+.main-content {
+  flex-grow: 1;
+}
+
+label,
+input {
+  display: table-cell;
+  padding-top: 15px;
+  margin-bottom: 0px;
+}
+
+input {
+  padding: 9px 9px;
+}
+
+button {
+  padding: 16px;
+  width: 100px;
+  font-size: 16px;
+  background-color: rgb(83, 145, 196);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+label {
+  padding-right: 10px;
+}
+
+/* login component */
+
+input#login-submit {
+  padding: 16px;
+  font-size: 16px;
+  width: 100px;
+  border: 1px solid #5391c4;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: black;
+  outline: none;
+  cursor: pointer;
+}
+
+input#login-submit:hover {
+  background-color: aliceblue;
+}
+
 form.form-login {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,16 +101,6 @@ div.form-login {
   display: table-row;
 }
 
-label,
-input {
-  display: table-cell;
-  margin-bottom: 10px;
-}
-
-label {
-  padding-right: 10px;
-}
-
 .login {
   display: flex;
   flex-direction: column;
@@ -63,13 +108,52 @@ label {
   align-items: center;
 }
 
-.main-content {
-  flex-grow: 1;
+.form-login #password {
+  margin-bottom: 15px;
 }
+
+/* register component */
 
 .form-register {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.form-register p {
+  margin-top: 0px;
+}
+
+.form-register #submit {
+  margin-top: 15px;
+}
+
+div.form-register {
+  display: table-row;
+}
+
+button#back-to-login {
+  margin-top: 50px;
+  width: 200px;
+  outline: none;
+}
+
+input#register-submit {
+  padding: 16px;
+  font-size: 16px;
+  width: 100px;
+  border: 1px solid #5391c4;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: black;
+  outline: none;
+  cursor: pointer;
+}
+
+input#register-submit:hover {
+  background-color: aliceblue;
 }

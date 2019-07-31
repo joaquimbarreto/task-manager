@@ -29,13 +29,11 @@ const Login = props => {
   return (
     <div className="login">
       <div>
-        <h2>Please register here</h2>
+        <h2>Join Us Today</h2>
         <Link to={"/register"}>
           <button>Register</button>
         </Link>
-        <p> or login below</p>
       </div>
-      <h2>Login</h2>
       <form action="" method="get" className="form-login">
         <div className="form-login">
           <label>Email: </label>
@@ -60,9 +58,10 @@ const Login = props => {
         <div className="form-login">
           <input
             type="submit"
+            id="login-submit"
             onClick={handleSubmit}
             value="Login"
-            style={{ float: "right" }}
+            // style={{ float: "right" }}
           />
         </div>
       </form>

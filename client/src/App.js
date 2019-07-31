@@ -63,7 +63,7 @@ const App = props => {
       <footer>
         <div>
           <p>
-            This app is done with MongoDB, Express, React and Node.js (MERN)
+            This app was done with MongoDB, Express, React and Node.js (MERN)
           </p>
         </div>
       </footer>
