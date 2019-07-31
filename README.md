@@ -25,7 +25,7 @@ A task management app in MERN (MongoDB, Express, React, Node).
 ### Deployment
 
 - Heroku
-- mLab addon
+- MongoDB Cloud Atlas (databaase)
 
 ## MVP
 

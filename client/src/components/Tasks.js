@@ -6,7 +6,7 @@ import usersAPI from "../usersAPI";
 const Tasks = props => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
-  const [newTaskCreated, setNewTaskCreated] = useState(null);
+  const [tasksUpdated, setTasksUpdated] = useState(null);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -21,18 +21,30 @@ const Tasks = props => {
   }, []);
 
   useEffect(() => {
-    if (newTaskCreated) {
+    if (tasksUpdated) {
       const token = localStorage.getItem("token");
       tasksAPI.tasks(token).then(res => setTasks(res.data));
-      setNewTaskCreated(false);
+      setTasksUpdated(false);
     }
-  }, [newTaskCreated]);
+  }, [tasksUpdated]);
 
   const deleteTask = id => {
     const token = localStorage.getItem("token");
     tasksAPI.delete(id, token);
     const newTasksSet = tasks.filter(task => task._id !== id);
     setTasks(newTasksSet);
+  };
+
+  const handleTaskCompletedTrue = id => {
+    const token = localStorage.getItem("token");
+    tasksAPI.completedTrue(id, token);
+    setTasksUpdated(true);
+  };
+
+  const handleTaskCompletedFalse = id => {
+    const token = localStorage.getItem("token");
+    tasksAPI.completedFalse(id, token);
+    setTasksUpdated(true);
   };
 
   const handleNewTaskInput = event => {
@@ -43,40 +55,25 @@ const Tasks = props => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     tasksAPI.create(newTask, token);
-    setNewTaskCreated(true);
+    setTasksUpdated(true);
     document.getElementById("new-task").value = "";
   };
 
   return (
     <div className="tasks">
       <div className="tasks-header">
-        <h3>User:</h3>
         <Link to={"/user"}>
           <h2>{user.name}</h2>
         </Link>
-        <button onClick={props.logout}>Logout</button>
+        <button id="tasks-logout" onClick={props.logout}>
+          Logout
+        </button>
       </div>
-      <h2>Tasks</h2>
-      <div className="tasks-list">
-        <ul>
-          {tasks.map(task => {
-            return (
-              <div className="task-entry">
-                <li key={task._id}>
-                  <div className="task-description">{task.description}</div>
-                  <div className="task-buttons">
-                    <button
-                      id="task-entry-delete"
-                      onClick={() => deleteTask(task._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              </div>
-            );
-          })}
-        </ul>
+      <div className="tasks-heading">
+        <h2>Tasks</h2>
+      </div>
+      <div className="tasks-instructions">
+        <p>Double click to toggle completed.</p>
       </div>
       <div className="tasks-form">
         <form>
@@ -101,6 +98,54 @@ const Tasks = props => {
             />
           </div>
         </form>
+      </div>
+      <div className="tasks-list">
+        <ul>
+          {tasks.map(task => {
+            if (task.completed === true) {
+              return (
+                <div key={task._id} className="completed-task-entry">
+                  <li key={task._id}>
+                    <div
+                      className="completed-task-description"
+                      onDoubleClick={() => handleTaskCompletedFalse(task._id)}
+                    >
+                      {task.description}
+                    </div>
+                    <div className="completed-task-buttons">
+                      <button
+                        id="task-entry-delete"
+                        onClick={() => deleteTask(task._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </li>
+                </div>
+              );
+            }
+            return (
+              <div key={task._id} className="not-completed-task-entry">
+                <li key={task._id}>
+                  <div
+                    className="not-completed-task-description"
+                    onDoubleClick={() => handleTaskCompletedTrue(task._id)}
+                  >
+                    {task.description}
+                  </div>
+                  <div className="not-completed-task-buttons">
+                    <button
+                      id="task-entry-delete"
+                      onClick={() => deleteTask(task._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

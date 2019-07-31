@@ -39,6 +39,12 @@
   flex-grow: 1;
 }
 
+footer {
+  margin-top: 50px;
+  color: white;
+  background-color: #255e8dd0;
+}
+
 label,
 input {
   display: table-cell;
@@ -162,6 +168,7 @@ input#register-submit:hover {
 
 input#submit-new-task {
   margin-top: 16px;
+  margin-bottom: 30px;
   padding: 16px;
   width: 250px;
   font-size: 16px;
@@ -177,10 +184,6 @@ input#submit-new-task {
 
 ul {
   list-style-type: none;
-}
-
-.tasks-list {
-  width: 620px;
 }
 
 li {
@@ -206,6 +209,40 @@ div.form-new-task {
   flex-direction: column;
   align-items: center;
 }
+
 button#task-entry-delete {
   padding: 10px;
+}
+
+.not-completed-task-description {
+  user-select: none;
+  width: 500px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.completed-task-description {
+  user-select: none;
+  width: 500px;
+  text-decoration-line: line-through;
+  cursor: default;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.tasks-instructions p {
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.tasks-heading h2 {
+  margin-top: 50px;
+  margin-bottom: 1px;
+}
+
+.tasks-header {
+  display: flex;
+  flex-direction: row;
 }

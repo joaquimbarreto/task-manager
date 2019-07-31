@@ -28,9 +28,7 @@ class tasksAPI {
       method: "post",
       baseURL: this.base_URL + "/tasks",
       headers: { Authorization: token },
-      data: {
-        description: task
-      }
+      data: { description: task }
     });
   }
 
@@ -43,11 +41,22 @@ class tasksAPI {
     return axios.delete(this.base_URL + "/tasks/" + id, header);
   }
 
-  static update(task) {
-    return axios
-      .patch(this.base_URL + "/tasks/" + task.id, task)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+  static completedTrue(id, token) {
+    return axios({
+      method: "patch",
+      baseURL: this.base_URL + "/tasks/" + id,
+      headers: { Authorization: token },
+      data: { completed: true }
+    });
+  }
+
+  static completedFalse(id, token) {
+    return axios({
+      method: "patch",
+      baseURL: this.base_URL + "/tasks/" + id,
+      headers: { Authorization: token },
+      data: { completed: false }
+    });
   }
 }
 
