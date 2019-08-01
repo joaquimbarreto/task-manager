@@ -1,17 +1,8 @@
 const request = require("supertest");
 const app = require("../server/app");
-const User = require("../models/user");
+const { userOneId, userOne, setupDatabase } = require("./fixtures/db");
 
-const userOne = {
-  name: "Tony DiNozzo",
-  email: "tony@ncis.org",
-  password: "12345678"
-};
-
-beforeEach(async () => {
-  await User.deleteMany();
-  await new User(userOne).save();
-});
+beforeEach(setupDatabase);
 
 test("Should signup a new user", async () => {
   await request(app)
@@ -42,4 +33,27 @@ test("Should not login nonexistent user", async () => {
       password: "thisisnotmypass"
     })
     .expect(400);
+});
+
+test("Should get profile for user", async () => {
+  await request(app)
+    .get("/users/me")
+    .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+    .send()
+    .expect(200);
+});
+
+test("Should not get profile for unauthenticated user", async () => {
+  await request(app)
+    .get("/users/me")
+    .send()
+    .expect(401);
+});
+
+test("Should logout current user", async () => {
+  await request(app)
+    .post("/users/logout")
+    .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
+    .send()
+    .expect(200);
 });

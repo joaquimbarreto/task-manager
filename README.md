@@ -39,11 +39,13 @@ A task management app in MERN (MongoDB, Express, React, Node).
 - Toggle complete
 - Heroku deploy
 - CSS
+- Back-end Jest testing
 
 ### Stretch Goals
 
 (In order of priority)
 
-- Jest Testing
+- Fix React Router Express CSP
+- Front-end Jest Enzyme tests
 - Update user details
 - Delete user account
