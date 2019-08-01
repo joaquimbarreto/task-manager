@@ -21,6 +21,10 @@ const Tasks = props => {
   }, []);
 
   useEffect(() => {
+    props.history.push("/");
+  }, [props.history]);
+
+  useEffect(() => {
     if (tasksUpdated) {
       const token = localStorage.getItem("token");
       tasksAPI.tasks(token).then(res => setTasks(res.data));
