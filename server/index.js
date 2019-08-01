@@ -1,7 +1,8 @@
 const express = require("express");
 const usersRouter = require("../routers/users");
 const tasksRouter = require("../routers/tasks");
-const csp = require("express-csp-header");
+// const csp = require("express-csp-header");
+const csp = require("helmet-csp");
 const path = require("path");
 require("../db/mongoose");
 
@@ -20,11 +21,20 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// app.use(
+//   csp({
+//     policies: {
+//       "default-src": [csp.SELF],
+//       "img-src": ['data:', 'mern-task-manager.herokuapp.com']
+//     }
+//   })
+// );
+
 app.use(
   csp({
-    policies: {
-      "default-src": [csp.SELF],
-      "img-src": ['data:', 'mern-task-manager.herokuapp.com']
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["mern-task-manager.herokuapp.com", "data:"]
     }
   })
 );
