@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(
   csp({
     policies: {
-      "default-src": [csp.NONE],
-      "img-src": [csp.SELF]
+      "default-src": [csp.SELF],
+      "img-src": ['data:', 'mern-task-manager.herokuapp.com']
     }
   })
 );
