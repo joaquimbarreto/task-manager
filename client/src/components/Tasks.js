@@ -20,9 +20,9 @@ const Tasks = props => {
     });
   }, []);
 
-  useEffect(() => {
-    props.history.push("/");
-  }, [props.history]);
+  // useEffect(() => {
+  //   props.history.push("/");
+  // }, [props.history]);
 
   useEffect(() => {
     if (tasksUpdated) {
