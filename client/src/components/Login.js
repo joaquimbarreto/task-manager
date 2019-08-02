@@ -19,6 +19,7 @@ const Login = props => {
       if (res.error) {
         alert(res.error);
       } else {
+        console.log(res.data);
         localStorage.removeItem("token");
         localStorage.setItem("token", res.data.token);
         props.history.push("/");
