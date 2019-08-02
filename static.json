@@ -4,6 +4,7 @@
   "routes": {
     "/*.html": "index.html",
     "/user/tasks/*": "/",
-    "/user/login/*": "/"
+    "/users/login/*": "/",
+    "/users/me/*": "/"
   }
 }
