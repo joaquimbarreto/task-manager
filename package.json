@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "env-cmd -f ./config/dev.env nodemon server/index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build",
     "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
   },
   "jest": {
