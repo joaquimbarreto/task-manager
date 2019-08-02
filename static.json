@@ -3,8 +3,8 @@
   "clean_urls": false,
   "routes": {
     "/*.html": "index.html",
-    "/user/tasks/*": "/user/tasks",
-    "/users/login/*": "/users/login",
-    "/users/me/*": "/users/me"
+    "/user/tasks/*": "user/tasks",
+    "/users/login/*": "users/login",
+    "/users/me/*": "users/me"
   }
 }
