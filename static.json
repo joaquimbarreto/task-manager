@@ -2,7 +2,6 @@
   "root": "client/build/",
   "clean_urls": false,
   "routes": {
-    "/*.html": "index.html",
-    "/user/tasks/*": "index.html"
+    "/**": "/"
   }
 }
