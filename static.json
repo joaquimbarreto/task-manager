@@ -3,7 +3,6 @@
   "clean_urls": false,
   "routes": {
     "/*.html": "index.html",
-    "/user/*": "index.html",
-    "/register/*": "index.html"
+    "/user/tasks/*": "index.html"
   }
 }
