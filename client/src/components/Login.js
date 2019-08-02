@@ -21,7 +21,7 @@ const Login = props => {
       } else {
         localStorage.removeItem("token");
         localStorage.setItem("token", res.data.token);
-        props.history.push("/user/tasks");
+        props.history.push("/");
       }
     });
   };
