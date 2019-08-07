@@ -57,7 +57,7 @@ const App = props => {
               <Tasks {...routerProps} logout={logout} />
             )}
           />
-          <Route component={NotFound} />
+          <Route component={Login} />
         </Switch>
       </div>
       <footer>
